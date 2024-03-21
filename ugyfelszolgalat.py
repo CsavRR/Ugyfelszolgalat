@@ -116,3 +116,6 @@ else:
 vege = str(hivas[kapcsolt[i]][3]) + ' ' + str(hivas[kapcsolt[i]][4]) + ' ' + str(hivas[kapcsolt[i]][5])
 
 s.write(f'{kapcsolt[i] + 1} {kezd} {vege}')
+
+f.close()
+s.close()
