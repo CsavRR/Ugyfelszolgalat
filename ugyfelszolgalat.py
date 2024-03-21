@@ -58,3 +58,27 @@ if telefonalo:
     print(f'A varakozok szama: {varakozokSz} a beszelo a {telefonalo}. hivo.')
 else:
     print('Nem volt beszelo.')
+
+print('6. feladat')
+
+utsoH = 0
+utsoE = 0
+muszakV = mpbe(12, 0, 0)
+i = 0
+
+for hiv in hivas:
+    kezdet = mpbe(hiv[0], hiv[1], hiv[2])
+    veg = mpbe(hiv[3], hiv[4], hiv[5])
+    if kezdet <= muszakV and veg > mpbe(hivas[utsoH][3], hivas[utsoH][4], hivas[utsoH][5]):
+        utsoE = utsoH
+        utsoH = i
+    i += 1
+
+utsoEveg = mpbe(hivas[utsoE][3], hivas[utsoE][4], hivas[utsoE][5])
+utsoHkezd = mpbe(hivas[utsoH][0], hivas[utsoH][1], hivas[utsoH][2])
+varakozas = utsoEveg - utsoHkezd
+
+if varakozas < 0:
+    varakozas = 0
+
+print(f'Az utolso telefonalo adatai a(z) {utsoH + 1}. sorban vannak, {varakozas} masodpercig vart')
