@@ -19,3 +19,17 @@ for ora in hivas:
 
 for k, v in orak.items():
     print(f'{k} ora {v} hivas')
+
+print('4. feladat')
+maxH = 0
+maxHSor = 0
+hSor = 1
+
+for hiv in hivas:
+    hivH = mbpe(hiv[3], hiv[4], hiv[5]) - mbpe(hiv[0], hiv[1], hiv[2])
+    if maxH < hivH:
+        maxH = hivH
+        maxHSor = hSor
+    hSor += 1
+
+print(f'A leghosszabb ideig vonalban levo hivo {maxHSor}. sorban szerepel, a hivas hossza: {maxH} masodperc.')
