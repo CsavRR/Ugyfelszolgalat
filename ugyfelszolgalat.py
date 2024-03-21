@@ -7,6 +7,8 @@ f = open('hivas.txt', 'rt')
 for sor in f:
     sor = sor.strip().split(' ')
     sor = list(map(int, sor))
+    sor.append(mpbe(sor[0], sor[1], sor[2]))
+    sor.append(mpbe(sor[3], sor[4], sor[5]))
     hivas.append(sor)
 
 print('3. feladat')
@@ -82,3 +84,35 @@ if varakozas < 0:
     varakozas = 0
 
 print(f'Az utolso telefonalo adatai a(z) {utsoH + 1}. sorban vannak, {varakozas} masodpercig vart')
+
+kapcsolt = []
+elotte = 0
+muszakK = mpbe(8, 0, 0)
+i = 0
+
+for hiv in hivas:
+    if muszakK < hiv[7] and hivas[elotte][7] < hiv[7]  and hiv[6] <= muszakV:
+        kapcsolt.append(i)
+        elotte = i
+    i += 1
+
+s = open('sikeres.txt', 'wt')
+
+if hivas[kapcsolt[0]][6] < muszakK:
+    kezd = '08 00 00'
+else:
+    kezd = str(hivas[kapcsolt[i]][0]) + ' ' + str(hivas[kapcsolt[i]][1]) + ' ' + str(hivas[kapcsolt[i]][2])
+
+vege = str(hivas[kapcsolt[0]][3]) + ' ' + str(hivas[kapcsolt[0]][4]) + ' ' + str(hivas[kapcsolt[0]][5])
+
+s.write(f'{kapcsolt[0] + 1} {kezd} {vege}')
+
+for i in range(1, len(kapcsolt) - 1):
+    if hivas[kapcsolt[i - 1]][7] < hivas[kapcsolt[i]][6]:
+        kezd = str(hivas[kapcsolt[i]][0]) + ' ' + str(hivas[kapcsolt[i]][1]) + ' ' + str(hivas[kapcsolt[i]][2])
+else:
+    kezd = str(hivas[kapcsolt[i - 1]][3]) + ' ' + str(hivas[kapcsolt[i - 1]][4]) + ' ' + str(hivas[kapcsolt[i - 1]][5])
+
+vege = str(hivas[kapcsolt[i]][3]) + ' ' + str(hivas[kapcsolt[i]][4]) + ' ' + str(hivas[kapcsolt[i]][5])
+
+s.write(f'{kapcsolt[i] + 1} {kezd} {vege}')
